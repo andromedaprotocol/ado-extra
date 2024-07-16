@@ -7,9 +7,26 @@ pub struct InstantiateMsg {}
 
 #[andr_exec]
 #[cw_serde]
-pub enum ExecuteMsg {}
+pub enum ExecuteMsg {
+    IncreaseNonce {},
+}
 
 #[andr_query]
 #[cw_serde]
 #[derive(QueryResponses)]
-pub enum QueryMsg {}
+pub enum QueryMsg {
+    #[returns(GetNonceResponse)]
+    GetNonce {},
+    #[returns(GetRandomResponse)]
+    GetRandom {},
+}
+
+#[cw_serde]
+pub struct GetNonceResponse {
+    pub nonce: u128,
+}
+
+#[cw_serde]
+pub struct GetRandomResponse {
+    pub random: String,
+}
